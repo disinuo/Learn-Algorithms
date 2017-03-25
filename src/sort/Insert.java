@@ -1,4 +1,4 @@
-public void insertSort(){
+public void insertSort_direct(){//直接插入
     for(int i=1;i<length;i++){
         int x=array[i];
         int j=i-1;
@@ -12,3 +12,26 @@ public void insertSort(){
         array[j+1]=x;
     }
 }
+public void insertSort_division(){//二分法插入
+        for(int i=1;i<length;i++){
+            int x=array[i];
+            int right=i-1;
+            int left=0;
+            int middle;
+            while (left<=right){
+                middle=(right+left)/2;
+                if(array[middle]>x){
+                    right=middle-1;
+                }else if(array[middle]<x){
+                    left=middle+1;
+                }else {//考虑有重复数字的可能
+                    left=middle;
+                    break;
+                }
+            }
+            for(int j=i;j>left;j--){
+                array[j]=array[j-1];
+            }
+            array[left]=x;
+        }
+    }
